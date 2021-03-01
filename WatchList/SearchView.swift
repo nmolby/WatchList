@@ -10,11 +10,10 @@ import SwiftUI
 import Combine
 import CoreData
 
-struct MovieSearchView: View {
-
+struct SearchView: View {
     @State private var searchText = ""
     @State private var totalResults = 0
-    @State private var results: [MovieSearch.Result] = []
+    @State private var results: [SearchResult] = []
 
     var body: some View {
         NavigationView {
@@ -31,7 +30,7 @@ struct MovieSearchView: View {
                     }
                 }
                 .padding()
-                ContentListView<[MovieSearch.Result]>(results: $results)
+                ContentListView(results: $results)
             }
             .navigationBarTitle("Movies", displayMode: .inline)
         }
@@ -41,8 +40,18 @@ struct MovieSearchView: View {
         results = []
         api.movieSearch(match: s).sink { (completion) in
         } receiveValue: { (search) in
-            totalResults = search.totalResults
-            results = search.results.sorted { lhs, rhs in
+            totalResults += search.totalResults
+            results += search.results
+            results.sort() { lhs, rhs in
+                lhs.voteCount > rhs.voteCount
+            }
+        }.store(in: &cancellables)
+        
+        api.tvSearch(match: s).sink { (completion) in
+        } receiveValue: { (search) in
+            totalResults += search.totalResults
+            results += search.results
+            results.sort() { lhs, rhs in
                 lhs.voteCount > rhs.voteCount
             }
         }.store(in: &cancellables)

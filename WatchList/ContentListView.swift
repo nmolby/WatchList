@@ -11,33 +11,52 @@ import Combine
 import CoreData
 
 
-struct ContentListView<ContentSearch: Sequence & RandomAccessCollection >: View where ContentSearch.Element: SearchResult {
-    @Binding internal var results: ContentSearch
+struct ContentListView: View {
+    @Binding internal var results: [SearchResult]
+    //@Namespace private var animation
 
     var body: some View {
         List {
             ForEach(results, id: \.self.id) { result in
-                NavigationLink(destination:
-                                MovieCreditsView(movieID: result.id, navTitle: result.name)) {
-                    HStack{
-                        if let posterPath = result.posterPath {
-                        AsyncImage(
-                            url: URL(string: "https://image.tmdb.org/t/p/w92" + posterPath)!,
-                            placeholder: {Text("Loading ...") },
-                            image: { Image(uiImage: $0)}
-                                ).aspectRatio(contentMode: .fit)
-                        }
-                        VStack(alignment: .leading){
-                            Text(result.name)
-                            Text(result.releaseDate.trimmingCharacters(in: .whitespacesAndNewlines))
-                                .fontWeight(.thin)
-                                .font(.caption)
-                        }
-                    }
+                if let movie = result as? MovieSearch.Result {
+                    NavigationLink(destination:
+                                    MovieDetailView(movie: movie)) {
+                        ContentListViewItem(result: result)
 
+                    }
+                } else if let show = result as? TVSearch.Result {
+                    NavigationLink(destination:
+                                    TVDetailView(show: show)) {
+                        ContentListViewItem(result: result)
+
+                    }
                 }
+                
             }
             
+        }
+    }
+}
+
+struct ContentListViewItem: View {
+    @State internal var result: SearchResult
+    var body: some View {
+        HStack{
+            if let posterPath = result.posterPath {
+            AsyncImage(
+                url: URL(string: "https://image.tmdb.org/t/p/w92" + posterPath)!,
+                placeholder: {Text("") },
+                image: { Image(uiImage: $0)}
+                    ).aspectRatio(contentMode: .fit)
+            //.matchedGeometryEffect(id: "Poster", in: animation)
+            }
+            
+            VStack(alignment: .leading){
+                Text(result.name)
+                Text(result.releaseDate.trimmingCharacters(in: .whitespacesAndNewlines))
+                    .fontWeight(.thin)
+                    .font(.caption)
+            }
         }
     }
 }
