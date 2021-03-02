@@ -26,6 +26,10 @@
 		112C568725E8275E00E02154 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112C568625E8275E00E02154 /* AsyncImage.swift */; };
 		112C568A25E828F800E02154 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112C568925E828F800E02154 /* ImageCache.swift */; };
 		112C568D25E8294500E02154 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112C568C25E8294500E02154 /* EnvironmentValues.swift */; };
+		112FCECB25EEDDD60091A4E2 /* MovieClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCECA25EEDDD60091A4E2 /* MovieClass.swift */; };
+		112FCECF25EEE5610091A4E2 /* WatchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112FCECE25EEE5610091A4E2 /* WatchList.swift */; };
+		1194402A25EEEB9C005B671B /* WatchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194402925EEEB9C005B671B /* WatchListView.swift */; };
+		1194402D25EEEBE1005B671B /* AddToWatchListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194402C25EEEBE1005B671B /* AddToWatchListButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +54,10 @@
 		112C568625E8275E00E02154 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		112C568925E828F800E02154 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		112C568C25E8294500E02154 /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
+		112FCECA25EEDDD60091A4E2 /* MovieClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieClass.swift; sourceTree = "<group>"; };
+		112FCECE25EEE5610091A4E2 /* WatchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchList.swift; sourceTree = "<group>"; };
+		1194402925EEEB9C005B671B /* WatchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListView.swift; sourceTree = "<group>"; };
+		1194402C25EEEBE1005B671B /* AddToWatchListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToWatchListButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,10 @@
 				112C568925E828F800E02154 /* ImageCache.swift */,
 				1123922B25EC89CE00C167E1 /* ContentListView.swift */,
 				1123923A25ECAA6A00C167E1 /* RatingView.swift */,
+				112FCECA25EEDDD60091A4E2 /* MovieClass.swift */,
+				112FCECE25EEE5610091A4E2 /* WatchList.swift */,
+				1194402925EEEB9C005B671B /* WatchListView.swift */,
+				1194402C25EEEBE1005B671B /* AddToWatchListButton.swift */,
 			);
 			path = WatchList;
 			sourceTree = "<group>";
@@ -185,17 +197,21 @@
 			files = (
 				1123923425EC9BF800C167E1 /* MovieDetailView.swift in Sources */,
 				112C568A25E828F800E02154 /* ImageCache.swift in Sources */,
+				112FCECF25EEE5610091A4E2 /* WatchList.swift in Sources */,
 				112C568725E8275E00E02154 /* AsyncImage.swift in Sources */,
 				0360624425D846A6000D1B7B /* Persistence.swift in Sources */,
 				1123922C25EC89CE00C167E1 /* ContentListView.swift in Sources */,
 				1123923725ECA4A500C167E1 /* TVDetailView.swift in Sources */,
 				0360624725D846A6000D1B7B /* WatchList.xcdatamodeld in Sources */,
+				1194402A25EEEB9C005B671B /* WatchListView.swift in Sources */,
+				112FCECB25EEDDD60091A4E2 /* MovieClass.swift in Sources */,
 				0360625725D885B9000D1B7B /* DecodableExtensions.swift in Sources */,
 				0360625025D84857000D1B7B /* MovieDBAPI.swift in Sources */,
 				0360625A25D9964F000D1B7B /* MovieDBCodable.swift in Sources */,
 				112C568D25E8294500E02154 /* EnvironmentValues.swift in Sources */,
 				1123923B25ECAA6A00C167E1 /* RatingView.swift in Sources */,
 				112C568425E8273300E02154 /* ImageLoader.swift in Sources */,
+				1194402D25EEEBE1005B671B /* AddToWatchListButton.swift in Sources */,
 				1123922F25EC959000C167E1 /* SearchView.swift in Sources */,
 				0360623D25D846A5000D1B7B /* ContentView.swift in Sources */,
 				0360625325D85728000D1B7B /* APIKey.swift in Sources */,

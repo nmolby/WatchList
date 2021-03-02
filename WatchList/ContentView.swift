@@ -15,12 +15,30 @@ extension Cast: Identifiable {}
 extension PersonCredits.Cast: Identifiable {}
 
 struct ContentView: View {
-
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \WatchList.name, ascending: true)],
+        animation: .default)
+    private var watchLists: FetchedResults<WatchList>
+    
     var body: some View {
         TabView {
             SearchView()
                 .tabItem { Image(systemName: "magnifyingglass") }
             
+        }.onAppear() {
+            if (watchLists.count == 0) {
+                let watchList = WatchList(context: viewContext)
+                
+                watchList.name = "Watch List"
+                watchList.movies = []
+                do {
+                    try viewContext.save()
+                } catch {
+                    print("save failed")
+                }
+            }
         }
     }
 }

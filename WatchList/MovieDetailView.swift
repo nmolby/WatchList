@@ -13,6 +13,7 @@ import CoreData
 struct MovieDetailView: View {
     @State private var cast: [Cast] = []
     @State internal var movie: MovieSearch.Result
+    @Environment(\.managedObjectContext) private var viewContext
     
 
     //var namespace: Namespace.ID
@@ -34,6 +35,10 @@ struct MovieDetailView: View {
                     Text(movie.releaseDate).font(.headline)
                     Text(String(movie.popularity))
                     RatingView(ratingPercent: Int(movie.voteAverage * 10))
+                    HStack {
+                        AddToWatchListButton(movie: MovieClass.createFromMovieResult(movieResult: movie, context: viewContext))
+                        //AddToWatchedButton()
+                    }
                 }
                 
             }

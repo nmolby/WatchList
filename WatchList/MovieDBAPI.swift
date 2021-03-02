@@ -45,7 +45,7 @@ struct MovieDBAPI {
         return Fail.badRequest()
     }
 
-    func movieCredits(id: Int) -> AnyPublisher<MovieCredits, FetchDecodeError> {
+    func movieCredits(id: Int64) -> AnyPublisher<MovieCredits, FetchDecodeError> {
         if let request = requestForMovieCredits(id: id) {
             return MovieCredits.fetchFrom(request: request)
         }
@@ -130,7 +130,7 @@ struct MovieDBAPI {
         return nil
     }
 
-    func requestForMovieCredits(id: Int) -> URLRequest? {
+    func requestForMovieCredits(id: Int64) -> URLRequest? {
         if let url = URL(string: "\(MovieDBAPI.baseURL)/movie/\(id)/credits") {
             return request(url: url)
         }

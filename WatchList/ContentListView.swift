@@ -56,6 +56,7 @@ struct ContentListViewItem: View {
                 Text(result.releaseDate.trimmingCharacters(in: .whitespacesAndNewlines))
                     .fontWeight(.thin)
                     .font(.caption)
+                RatingView(ratingPercent: Int(result.voteAverage * 10))
             }
         }
     }

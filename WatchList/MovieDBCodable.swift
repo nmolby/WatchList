@@ -6,15 +6,17 @@
 //
 
 import Foundation
+import CoreData
+
 
 protocol SearchResult {
     var releaseDate: String {get}
-    var id: Int {get}
+    var id: Int64 {get}
     var name: String {get}
     var popularity: Double {get}
     var posterPath: String? {get}
     var voteAverage: Double {get}
-    var voteCount: Int {get}
+    var voteCount: Int64 {get}
 }
 
 // MARK: - Movie
@@ -319,14 +321,14 @@ struct TVSearch: Codable {
         let backdropPath: String?
         let releaseDate: String
         let genreIDS: [Int]
-        let id: Int
+        let id: Int64
         let name: String
         let originCountry: [String]
         let originalLanguage, originalName, overview: String
         let popularity: Double
         let posterPath: String?
         let voteAverage: Double
-        let voteCount: Int
+        let voteCount: Int64
 
         enum CodingKeys: String, CodingKey {
             case backdropPath = "backdrop_path"
@@ -361,14 +363,14 @@ struct MovieSearch: Codable {
         let adult: Bool
         let backdropPath: String?
         let genreIDS: [Int]
-        let id: Int
+        let id: Int64
         let originalLanguage, name, overview: String
         let popularity: Double
         let posterPath: String?
         let releaseDate, title: String
         let video: Bool
         let voteAverage: Double
-        let voteCount: Int
+        let voteCount: Int64
 
         enum CodingKeys: String, CodingKey {
             case adult
