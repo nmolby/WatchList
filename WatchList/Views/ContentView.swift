@@ -30,9 +30,11 @@ struct ContentView: View {
         }.onAppear() {
             if (watchLists.count == 0) {
                 let watchList = WatchList(context: viewContext)
+                watchList.id = UUID()
                 
                 watchList.name = "Watch List"
                 watchList.movies = []
+                
                 do {
                     try viewContext.save()
                 } catch {

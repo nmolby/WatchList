@@ -22,6 +22,12 @@ extension MovieClass {
     }
 }
 
+extension MovieClass {
+    static func ==(lhs: MovieClass, rhs: MovieClass) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
 extension MovieClass: SearchResult {
     var releaseDate: String {
         get {

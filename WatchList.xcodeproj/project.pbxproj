@@ -12,7 +12,6 @@
 		0360623F25D846A6000D1B7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0360623E25D846A6000D1B7B /* Assets.xcassets */; };
 		0360624225D846A6000D1B7B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0360624125D846A6000D1B7B /* Preview Assets.xcassets */; };
 		0360624425D846A6000D1B7B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0360624325D846A6000D1B7B /* Persistence.swift */; };
-		0360624725D846A6000D1B7B /* WatchList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0360624525D846A6000D1B7B /* WatchList.xcdatamodeld */; };
 		0360625025D84857000D1B7B /* MovieDBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0360624F25D84857000D1B7B /* MovieDBAPI.swift */; };
 		0360625325D85728000D1B7B /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0360625225D85728000D1B7B /* APIKey.swift */; };
 		0360625725D885B9000D1B7B /* DecodableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0360625625D885B9000D1B7B /* DecodableExtensions.swift */; };
@@ -39,7 +38,6 @@
 		0360623E25D846A6000D1B7B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0360624125D846A6000D1B7B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0360624325D846A6000D1B7B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		0360624625D846A6000D1B7B /* WatchList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WatchList.xcdatamodel; sourceTree = "<group>"; };
 		0360624825D846A6000D1B7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0360624F25D84857000D1B7B /* MovieDBAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDBAPI.swift; sourceTree = "<group>"; };
 		0360625225D85728000D1B7B /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
@@ -90,30 +88,16 @@
 		0360623925D846A5000D1B7B /* WatchList */ = {
 			isa = PBXGroup;
 			children = (
-				1123923625ECA4A500C167E1 /* TVDetailView.swift */,
-				1123923325EC9BF800C167E1 /* MovieDetailView.swift */,
+				117C36AB2603BC4800DA85B4 /* Models */,
+				117C36AA2603BC2800DA85B4 /* Views */,
 				0360623A25D846A5000D1B7B /* WatchListApp.swift */,
 				0360625225D85728000D1B7B /* APIKey.swift */,
-				0360623C25D846A5000D1B7B /* ContentView.swift */,
-				1123922E25EC959000C167E1 /* SearchView.swift */,
 				112C568325E8273300E02154 /* ImageLoader.swift */,
 				0360623E25D846A6000D1B7B /* Assets.xcassets */,
 				0360624325D846A6000D1B7B /* Persistence.swift */,
 				0360624825D846A6000D1B7B /* Info.plist */,
-				0360624525D846A6000D1B7B /* WatchList.xcdatamodeld */,
 				0360624025D846A6000D1B7B /* Preview Content */,
-				0360624F25D84857000D1B7B /* MovieDBAPI.swift */,
-				0360625925D9964F000D1B7B /* MovieDBCodable.swift */,
-				0360625625D885B9000D1B7B /* DecodableExtensions.swift */,
-				112C568625E8275E00E02154 /* AsyncImage.swift */,
 				112C568C25E8294500E02154 /* EnvironmentValues.swift */,
-				112C568925E828F800E02154 /* ImageCache.swift */,
-				1123922B25EC89CE00C167E1 /* ContentListView.swift */,
-				1123923A25ECAA6A00C167E1 /* RatingView.swift */,
-				112FCECA25EEDDD60091A4E2 /* MovieClass.swift */,
-				112FCECE25EEE5610091A4E2 /* WatchList.swift */,
-				1194402925EEEB9C005B671B /* WatchListView.swift */,
-				1194402C25EEEBE1005B671B /* AddToWatchListButton.swift */,
 			);
 			path = WatchList;
 			sourceTree = "<group>";
@@ -124,6 +108,35 @@
 				0360624125D846A6000D1B7B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		117C36AA2603BC2800DA85B4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1123922B25EC89CE00C167E1 /* ContentListView.swift */,
+				1123923A25ECAA6A00C167E1 /* RatingView.swift */,
+				1194402925EEEB9C005B671B /* WatchListView.swift */,
+				1194402C25EEEBE1005B671B /* AddToWatchListButton.swift */,
+				0360623C25D846A5000D1B7B /* ContentView.swift */,
+				1123922E25EC959000C167E1 /* SearchView.swift */,
+				1123923625ECA4A500C167E1 /* TVDetailView.swift */,
+				1123923325EC9BF800C167E1 /* MovieDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		117C36AB2603BC4800DA85B4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0360624F25D84857000D1B7B /* MovieDBAPI.swift */,
+				0360625925D9964F000D1B7B /* MovieDBCodable.swift */,
+				0360625625D885B9000D1B7B /* DecodableExtensions.swift */,
+				112C568625E8275E00E02154 /* AsyncImage.swift */,
+				112C568925E828F800E02154 /* ImageCache.swift */,
+				112FCECA25EEDDD60091A4E2 /* MovieClass.swift */,
+				112FCECE25EEE5610091A4E2 /* WatchList.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,7 +215,6 @@
 				0360624425D846A6000D1B7B /* Persistence.swift in Sources */,
 				1123922C25EC89CE00C167E1 /* ContentListView.swift in Sources */,
 				1123923725ECA4A500C167E1 /* TVDetailView.swift in Sources */,
-				0360624725D846A6000D1B7B /* WatchList.xcdatamodeld in Sources */,
 				1194402A25EEEB9C005B671B /* WatchListView.swift in Sources */,
 				112FCECB25EEDDD60091A4E2 /* MovieClass.swift in Sources */,
 				0360625725D885B9000D1B7B /* DecodableExtensions.swift in Sources */,
@@ -404,19 +416,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		0360624525D846A6000D1B7B /* WatchList.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				0360624625D846A6000D1B7B /* WatchList.xcdatamodel */,
-			);
-			currentVersion = 0360624625D846A6000D1B7B /* WatchList.xcdatamodel */;
-			path = WatchList.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 0360622F25D846A5000D1B7B /* Project object */;
 }

@@ -24,13 +24,7 @@ struct AddToWatchListButton: View {
     @ObservedObject internal var movie: MovieClass
     
     var movieInWatchList: Bool {
-        if let watchList = watchList {
-            if let movies = watchList.movies, movies.contains(movie) {
-                return true
-            }
-        }
-        return false
-
+        return watchList != nil && watchList!.movies != nil && watchList!.containsMovie(movie: movie)
     }
     
     var body: some View {
@@ -50,16 +44,19 @@ struct AddToWatchListButton: View {
         do {
             try viewContext.save()
         } catch {
-            print("save failed")
+            print("save failed, error \(error)")
         }
+        print(watchList!.movies)
     }
     
     func removeFromWatchList() {
+        print(watchList!.movies)
+
         watchList!.removeFromMovies(movie)
         do {
             try viewContext.save()
         } catch {
-            print("save failed")
+            print("save failed, error \(error)")
         }
     }
     
@@ -69,6 +66,5 @@ struct AddToWatchListButton: View {
                 watchList = myWatchList
             }
         }
-        
     }
 }
