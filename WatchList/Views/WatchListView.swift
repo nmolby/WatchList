@@ -10,17 +10,13 @@ import SwiftUI
 import CoreData
 
 struct WatchListView: View {
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \WatchList.name, ascending: true)],
-        animation: .default)
-    private var watchLists: FetchedResults<WatchList>
-    
-    @State private var movies: [SearchResult] = []
+    @Binding internal var watchList: WatchList
+    @State private var content: [ContentType] = []
     
     var body: some View {
         NavigationView {
             VStack {
-                ContentListView(results: $movies)
+                ContentListView(results: $content)
             }
         }
         .navigationBarTitle("Movies", displayMode: .inline)
@@ -30,13 +26,9 @@ struct WatchListView: View {
     }
     
     func getWatchList() {
-        movies = []
-        for myWatchList in watchLists {
-            if myWatchList.name == "Watch List"{
-                for movie in myWatchList.movies! {
-                    movies.append(movie as! SearchResult)
-                }
-            }
+        content = []
+        for pieceOfContent in watchList.movies! {
+            content.append(pieceOfContent as! ContentType)
         }
     }
 }

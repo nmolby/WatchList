@@ -13,7 +13,7 @@ import CoreData
 struct SearchView: View {
     @State private var searchText = ""
     @State private var totalResults = 0
-    @State private var results: [SearchResult] = []
+    @State private var results: [ContentType] = []
 
     var body: some View {
         NavigationView {

@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 
-protocol SearchResult {
+protocol ContentType {
     var releaseDate: String {get}
     var id: Int64 {get}
     var name: String {get}
@@ -317,7 +317,7 @@ struct TVSearch: Codable {
     }
 
     // MARK: - Result
-    struct Result: Codable, SearchResult {
+    struct Result: Codable, ContentType {
         let backdropPath: String?
         let releaseDate: String
         let genreIDS: [Int]
@@ -359,7 +359,7 @@ struct MovieSearch: Codable {
     }
 
     // MARK: - Result
-    struct Result: Codable, SearchResult {
+    struct Result: Codable, ContentType {
         let adult: Bool
         let backdropPath: String?
         let genreIDS: [Int]

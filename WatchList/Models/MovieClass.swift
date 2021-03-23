@@ -28,7 +28,7 @@ extension MovieClass {
     }
 }
 
-extension MovieClass: SearchResult {
+extension MovieClass: ContentType {
     var releaseDate: String {
         get {
             return self.optionalReleaseDate ?? ""

@@ -12,7 +12,7 @@ import CoreData
 
 
 struct ContentListView: View {
-    @Binding internal var results: [SearchResult]
+    @Binding internal var results: [ContentType]
     @Environment(\.managedObjectContext) private var viewContext
     //@Namespace private var animation
 
@@ -44,7 +44,7 @@ struct ContentListView: View {
 }
 
 struct ContentListViewItem: View {
-    @State internal var result: SearchResult
+    @State internal var result: ContentType
     var body: some View {
         HStack{
             if let posterPath = result.posterPath {
@@ -62,6 +62,7 @@ struct ContentListViewItem: View {
                     .fontWeight(.thin)
                     .font(.caption)
                 RatingView(ratingPercent: Int(result.voteAverage * 10))
+                    .frame(height: 50)
             }
         }
     }

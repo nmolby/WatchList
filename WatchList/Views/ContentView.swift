@@ -21,12 +21,13 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \WatchList.name, ascending: true)],
         animation: .default)
     private var watchLists: FetchedResults<WatchList>
+    @State private var mainWatchList: WatchList = WatchList()
     
     var body: some View {
         TabView {
             SearchView()
                 .tabItem { Image(systemName: "magnifyingglass") }
-            WatchListView()
+            WatchListView(watchList: $mainWatchList)
                 .tabItem { Image(systemName: "archivebox") }
             
         }.onAppear() {
@@ -41,6 +42,11 @@ struct ContentView: View {
                     try viewContext.save()
                 } catch {
                     print("save failed")
+                }
+            }
+            for watchList in watchLists {
+                if(watchList.name == "Watch List") {
+                    mainWatchList = watchList
                 }
             }
         }
