@@ -1,0 +1,18 @@
+Watch List Desired Features:
+
+TODO:
+
+- Saved movie / tv show watched list (core data)
+    - includes what rating you give a movie, comments about movie
+- Saved movie / tv show want to watch list (core data)
+- Other lists?
+- Detail view of movie / tv show with list of actors
+- Detail view of actor
+- Notifications for new movies that you may like
+	- Recommended movies based on your watched movies that you like
+- Notifications when movies on your watch list are released
+- Favorite actors/actresses?
+
+DONE:
+
+- Movie / tv show search and add to a list

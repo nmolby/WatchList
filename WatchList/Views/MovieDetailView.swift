@@ -12,9 +12,8 @@ import CoreData
 
 struct MovieDetailView: View {
     @State private var cast: [Cast] = []
-    @State internal var movie: MovieSearch.Result
+    @State internal var movie: MovieClass
     @Environment(\.managedObjectContext) private var viewContext
-    
 
     //var namespace: Namespace.ID
 
@@ -31,12 +30,12 @@ struct MovieDetailView: View {
                 }
                 Spacer()
                 VStack{
-                    Text(movie.title).font(.title)
+                    Text(movie.name).font(.title)
                     Text(movie.releaseDate).font(.headline)
                     Text(String(movie.popularity))
                     RatingView(ratingPercent: Int(movie.voteAverage * 10))
                     HStack {
-                        AddToWatchListButton(movie: MovieClass.createFromMovieResult(movieResult: movie, context: viewContext))
+                        AddToWatchListButton(movie: movie)
                         //AddToWatchedButton()
                     }
                 }
@@ -54,7 +53,7 @@ struct MovieDetailView: View {
                 cast = movieCredits.cast
             }.store(in: &cancellables)
         }
-        .navigationTitle(movie.title)
+        .navigationTitle(movie.name)
 
     }
     

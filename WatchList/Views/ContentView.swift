@@ -26,6 +26,8 @@ struct ContentView: View {
         TabView {
             SearchView()
                 .tabItem { Image(systemName: "magnifyingglass") }
+            WatchListView()
+                .tabItem { Image(systemName: "archivebox") }
             
         }.onAppear() {
             if (watchLists.count == 0) {

@@ -13,6 +13,7 @@ import CoreData
 
 struct ContentListView: View {
     @Binding internal var results: [SearchResult]
+    @Environment(\.managedObjectContext) private var viewContext
     //@Namespace private var animation
 
     var body: some View {
@@ -20,18 +21,22 @@ struct ContentListView: View {
             ForEach(results, id: \.self.id) { result in
                 if let movie = result as? MovieSearch.Result {
                     NavigationLink(destination:
-                                    MovieDetailView(movie: movie)) {
+                                    MovieDetailView(movie: MovieClass.createFromMovieResult(movieResult: movie, context: viewContext))) {
                         ContentListViewItem(result: result)
-
                     }
                 } else if let show = result as? TVSearch.Result {
                     NavigationLink(destination:
                                     TVDetailView(show: show)) {
                         ContentListViewItem(result: result)
-
+                    }
+                } else if let movie = result as? MovieClass {
+                    VStack{
+                        NavigationLink(destination:
+                                        MovieDetailView(movie: movie)) {
+                            ContentListViewItem(result: result)
+                        }
                     }
                 }
-                
             }
             
         }
