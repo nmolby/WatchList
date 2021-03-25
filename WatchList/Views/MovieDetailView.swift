@@ -12,13 +12,27 @@ import CoreData
 
 struct MovieDetailView: View {
     @State private var cast: [Cast] = []
-    @State internal var movie: MovieClass
+    internal let movie: MovieClass
     @Environment(\.managedObjectContext) private var viewContext
 
     //var namespace: Namespace.ID
+    
+    //https://stackoverflow.com/a/57631177
+    init(movie: MovieClass) {
+        self.movie = movie
+        
+        //Use this if NavigationBarTitle is with displayMode = .inline
+        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Georgia-Bold", size: 10)!]
 
+        //Use this if NavigationBarTitle is with Large Font
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "Georgia-Bold", size: 10)!]
+    }
     var body: some View {
         ScrollView{
+            Text(movie.name)
+                .font(.title)
+                //https://stackoverflow.com/a/59684944
+                .fixedSize(horizontal: false, vertical: true)
             HStack{
                 if let posterPath = movie.posterPath {
                 AsyncImage(
@@ -29,11 +43,34 @@ struct MovieDetailView: View {
                 //.matchedGeometryEffect(id: "Poster", in: animation)
                 }
                 Spacer()
-                VStack{
-                    Text(movie.name).font(.title)
-                    Text(movie.releaseDate).font(.headline)
-                    Text(String(movie.popularity))
+                VStack {
+                    HStack {
+                        Text("Release")
+                            .font(.callout)
+                            .fontWeight(.light)
+                        Spacer()
+                        Text(movie.releaseDate)
+                            .font(.callout)
+                    }
+                    NavigationLink(destination: Text(movie.overview!) ){
+                        HStack {
+                            Text("Description")
+                                .font(.callout)
+                                .fontWeight(.light)
+                            Spacer()
+                            Text(movie.overview!)
+                                .font(.callout)
+                                .lineLimit(4)
+                                .multilineTextAlignment(.trailing)
+                        }
+                        
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
+                    
+                    Spacer()
                     RatingView(ratingPercent: Int(movie.voteAverage * 10))
+                        .frame(height: 40)
                     HStack {
                         AddToWatchListButton(movie: movie)
                         //AddToWatchedButton()
@@ -41,9 +78,15 @@ struct MovieDetailView: View {
                 }
                 
             }
-            ForEach(cast) { p in
-                Text(p.name)
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(cast) { actor in
+                        ActorListItemView(actor: actor)
+                    }
+                }
+
             }
+
 
         }
         .onAppear {
@@ -53,7 +96,7 @@ struct MovieDetailView: View {
                 cast = movieCredits.cast
             }.store(in: &cancellables)
         }
-        .navigationTitle(movie.name)
+        .navigationBarTitle(movie.name)
 
     }
     

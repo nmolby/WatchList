@@ -18,6 +18,7 @@ extension MovieClass {
         myMovieClass.voteAverage = movieResult.voteAverage
         myMovieClass.voteCount = Int64(movieResult.voteCount)
         myMovieClass.popularity = movieResult.popularity
+        myMovieClass.overview = movieResult.overview
         return myMovieClass
     }
 }
