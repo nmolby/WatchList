@@ -17,22 +17,9 @@ struct MovieDetailView: View {
 
     //var namespace: Namespace.ID
     
-    //https://stackoverflow.com/a/57631177
-    init(movie: MovieClass) {
-        self.movie = movie
-        
-        //Use this if NavigationBarTitle is with displayMode = .inline
-        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Georgia-Bold", size: 10)!]
 
-        //Use this if NavigationBarTitle is with Large Font
-        UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "Georgia-Bold", size: 10)!]
-    }
     var body: some View {
         ScrollView{
-            Text(movie.name)
-                .font(.title)
-                //https://stackoverflow.com/a/59684944
-                .fixedSize(horizontal: false, vertical: true)
             HStack{
                 if let posterPath = movie.posterPath {
                 AsyncImage(
@@ -49,7 +36,7 @@ struct MovieDetailView: View {
                             .font(.callout)
                             .fontWeight(.light)
                         Spacer()
-                        Text(movie.releaseDate)
+                        Text(movie.releaseDate ?? "")
                             .font(.callout)
                     }
                     NavigationLink(destination: Text(movie.overview!) ){
@@ -78,16 +65,18 @@ struct MovieDetailView: View {
                 }
                 
             }
+            Text("Cast")
+                .font(.title2)
             ScrollView(.horizontal) {
                 HStack {
                     ForEach(cast) { actor in
-                        ActorListItemView(actor: actor)
+                        NavigationLink(destination:
+                                        ActorDetailView(actor: actor)) {
+                            ActorListItemView(actor: actor)
+                        }
                     }
                 }
-
             }
-
-
         }
         .onAppear {
             api.movieCredits(id: movie.id).sink { (completion) in

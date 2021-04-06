@@ -14,7 +14,20 @@ extension MovieClass {
         myMovieClass.id = Int64(movieResult.id)
         myMovieClass.name = movieResult.name
         myMovieClass.posterPath = movieResult.posterPath
-        myMovieClass.releaseDate = movieResult.releaseDate
+        myMovieClass.releaseDate = movieResult.releaseDate ?? ""
+        myMovieClass.voteAverage = movieResult.voteAverage
+        myMovieClass.voteCount = Int64(movieResult.voteCount)
+        myMovieClass.popularity = movieResult.popularity
+        myMovieClass.overview = movieResult.overview
+        return myMovieClass
+    }
+    
+    static func createFromCastResult(movieResult: PersonCredits.Cast, context: NSManagedObjectContext) -> MovieClass {
+        let myMovieClass = MovieClass(context: context)
+        myMovieClass.id = Int64(movieResult.id)
+        myMovieClass.name = movieResult.name
+        myMovieClass.posterPath = movieResult.posterPath
+        myMovieClass.releaseDate = movieResult.releaseDate ?? ""
         myMovieClass.voteAverage = movieResult.voteAverage
         myMovieClass.voteCount = Int64(movieResult.voteCount)
         myMovieClass.popularity = movieResult.popularity
@@ -30,7 +43,7 @@ extension MovieClass {
 }
 
 extension MovieClass: ContentType {
-    var releaseDate: String {
+    var releaseDate: String? {
         get {
             return self.optionalReleaseDate ?? ""
         } set {

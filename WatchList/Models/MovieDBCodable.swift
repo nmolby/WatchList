@@ -10,7 +10,7 @@ import CoreData
 
 
 protocol ContentType {
-    var releaseDate: String {get}
+    var releaseDate: String? {get}
     var id: Int64 {get}
     var name: String {get}
     var popularity: Double {get}
@@ -318,8 +318,9 @@ struct TVSearch: Codable {
 
     // MARK: - Result
     struct Result: Codable, ContentType {
+        var releaseDate: String?
+        
         let backdropPath: String?
-        let releaseDate: String
         let genreIDS: [Int]
         let id: Int64
         let name: String
@@ -360,6 +361,8 @@ struct MovieSearch: Codable {
 
     // MARK: - Result
     struct Result: Codable, ContentType {
+        var releaseDate: String?
+        
         let adult: Bool
         let backdropPath: String?
         let genreIDS: [Int]
@@ -367,7 +370,7 @@ struct MovieSearch: Codable {
         let originalLanguage, name, overview: String
         let popularity: Double
         let posterPath: String?
-        let releaseDate, title: String
+        let title: String
         let video: Bool
         let voteAverage: Double
         let voteCount: Int64
@@ -515,25 +518,30 @@ struct PersonCredits: Codable {
     let crew: [Cast]?
     let id: Int
 
-    struct Cast: Codable {
+    struct Cast: Codable, ContentType {
+        var name: String {
+            return title ?? ""
+        }
+        
+        let title: String?
         let adult: Bool?
         let backdropPath: String?
         let genreIDS: [Int]
-        let id: Int
+        let id: Int64
         let originalLanguage: String?
         let originalTitle: String?
         let overview: String?
         let posterPath: String?
-        let releaseDate, title: String?
+        let releaseDate: String?
         let video: Bool?
         let voteAverage: Double
-        let voteCount: Int
+        let voteCount: Int64
         let popularity: Double
         let character: String?
         let creditID: String
         let order: Int?
         let mediaType: MediaType
-        let originalName, name, firstAirDate: String?
+        let originalName, firstAirDate: String?
         let originCountry: [String]?
         let episodeCount: Int?
 
@@ -547,7 +555,7 @@ struct PersonCredits: Codable {
             case overview
             case posterPath = "poster_path"
             case releaseDate = "release_date"
-            case title, video
+            case video
             case voteAverage = "vote_average"
             case voteCount = "vote_count"
             case popularity, character
@@ -555,7 +563,7 @@ struct PersonCredits: Codable {
             case order
             case mediaType = "media_type"
             case originalName = "original_name"
-            case name
+            case title
             case firstAirDate = "first_air_date"
             case originCountry = "origin_country"
             case episodeCount = "episode_count"

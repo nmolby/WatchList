@@ -58,9 +58,12 @@ struct ContentListViewItem: View {
             
             VStack(alignment: .leading){
                 Text(result.name)
-                Text(result.releaseDate.trimmingCharacters(in: .whitespacesAndNewlines))
-                    .fontWeight(.thin)
-                    .font(.caption)
+                if let releaseDate = result.releaseDate {
+                    Text(releaseDate.trimmingCharacters(in: .whitespacesAndNewlines))
+                        .fontWeight(.thin)
+                        .font(.caption)
+                }
+
                 RatingView(ratingPercent: Int(result.voteAverage * 10))
                     .frame(height: 50)
             }

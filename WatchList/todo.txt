@@ -7,8 +7,6 @@ B:
     - includes what rating you give a movie, comments about movie
 - Saved movie / tv show want to watch list (core data)
 - Other lists?
-- Detail view of movie / tv show with list of actors
-- Detail view of actor
 
 A (choose any):
 - Notifications for new movies that you may like
@@ -18,4 +16,6 @@ A (choose any):
 
 DONE:
 
+- Detail view of movie / tv show with list of actors
 - Movie / tv show search and add to a list
+- Detail view of actor
