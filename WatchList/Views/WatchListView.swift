@@ -14,10 +14,8 @@ struct WatchListView: View {
     @State private var content: [ContentType] = []
     
     var body: some View {
-        NavigationView {
-            VStack {
-                ContentListView(results: $content)
-            }
+        VStack {
+            ContentListView(results: $content)
         }
         .navigationBarTitle("Movies", displayMode: .inline)
         .onAppear() {

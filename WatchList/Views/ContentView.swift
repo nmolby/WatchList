@@ -21,14 +21,17 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \WatchList.name, ascending: true)],
         animation: .default)
     private var watchLists: FetchedResults<WatchList>
-    @State private var mainWatchList: WatchList = WatchList()
+    @State private var watchListToShow: WatchList = WatchList()
+
     
     var body: some View {
         TabView {
             SearchView()
                 .tabItem { Image(systemName: "magnifyingglass") }
-            WatchListView(watchList: $mainWatchList)
+            WatchListsView(watchListToShow: $watchListToShow)
                 .tabItem { Image(systemName: "archivebox") }
+        
+
             
         }.onAppear() {
             if (watchLists.count == 0) {
@@ -44,11 +47,26 @@ struct ContentView: View {
                     print("save failed")
                 }
             }
-            for watchList in watchLists {
-                if(watchList.name == "Watch List") {
-                    mainWatchList = watchList
+            if (watchLists.count == 1) {
+                let watchList = WatchList(context: viewContext)
+                watchList.id = UUID()
+                
+                watchList.name = "Watched List"
+                watchList.movies = []
+                
+                do {
+                    try viewContext.save()
+                } catch {
+                    print("save failed")
                 }
             }
+            
+            for watchList in watchLists {
+                if(watchList.name == "Watch List") {
+                    watchListToShow = watchList
+                }
+            }
+            
         }
     }
 }

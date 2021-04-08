@@ -58,8 +58,8 @@ struct MovieDetailView: View {
                     Spacer()
                     RatingView(ratingPercent: Int(movie.voteAverage * 10))
                         .frame(height: 40)
-                    HStack {
-                        AddToWatchListButton(movie: movie)
+                    NavigationLink(destination: AddToWatchListView(movieToAdd: movie)) {
+                        Text("Add To Watch List")
                         //AddToWatchedButton()
                     }
                 }

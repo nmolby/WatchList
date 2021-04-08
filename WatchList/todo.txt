@@ -3,9 +3,7 @@ Watch List Desired Features:
 TODO:
 
 B:
-- Saved movie / tv show watched list (core data)
     - includes what rating you give a movie, comments about movie
-- Saved movie / tv show want to watch list (core data)
 - Other lists?
 
 A (choose any):
@@ -19,3 +17,5 @@ DONE:
 - Detail view of movie / tv show with list of actors
 - Movie / tv show search and add to a list
 - Detail view of actor
+- Saved movie / tv show watched list (core data)
+- Saved movie / tv show want to watch list (core data)
