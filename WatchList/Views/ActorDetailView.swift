@@ -22,7 +22,6 @@ struct ActorDetailView: View {
         ScrollView {
             Text(person?.name ?? "")
                 .font(.title)
-            Text(String(contentCredits.count))
             HStack {
                 if let profilePath = actor.profilePath {
                     AsyncImage(
@@ -38,7 +37,6 @@ struct ActorDetailView: View {
                     .multilineTextAlignment(.trailing)
             }
             ForEach(contentCredits, id: \.self.id) { content in
-                Text(content.name)
                 NavigationLink(destination:
                                 MovieDetailView(movie: MovieClass.createFromCastResult(movieResult: content, context: viewContext))) {
                     ContentListViewItem(result: content)

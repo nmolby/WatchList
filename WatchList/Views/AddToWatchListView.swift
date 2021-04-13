@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct AddToWatchListView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \WatchList.name, ascending: true)],
         animation: .default)
@@ -18,34 +16,19 @@ struct AddToWatchListView: View {
     internal var movieToAdd: MovieClass
     
     var body: some View {
-        ForEach(watchLists) { watchList in
-            if((watchList as WatchList).containsMovie(movie: movieToAdd) ) {
-                Button("Remove Movie") {
-                    removeFromWatchList(watchList: (watchList as WatchList))
-                }
-            } else {
-                Button("Add Movie") {
-                    addToWatchList(watchList: (watchList as WatchList))
-                }
+        List {
+            ForEach(watchLists) { watchList in
+                AddToWatchListButtonView(watchList: (watchList as WatchList), movieToAdd: movieToAdd)
+                    .padding()
             }
         }
+        .animation(.linear)
+
+        .listStyle(GroupedListStyle())
+        .navigationBarTitle("Watch Lists", displayMode: .large)
+        
+
+
     }
     
-    func addToWatchList(watchList: WatchList) {
-        watchList.addToMovies(movieToAdd)
-        do {
-            try viewContext.save()
-        } catch {
-            print("save failed, error \(error)")
-        }
-    }
-    
-    func removeFromWatchList(watchList: WatchList) {
-        watchList.removeFromMovies(movieToAdd)
-        do {
-            try viewContext.save()
-        } catch {
-            print("save failed, error \(error)")
-        }
-    }
 }

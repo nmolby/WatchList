@@ -12,16 +12,23 @@
         <attribute name="posterPath" optional="YES" attributeType="String"/>
         <attribute name="voteAverage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="voteCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="watchList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WatchList" inverseName="movies" inverseEntity="WatchList"/>
+    </entity>
+    <entity name="MovieReview" representedClassName="MovieReview" syncable="YES" codeGenerationType="class">
+        <attribute name="comment" optional="YES" attributeType="String"/>
+        <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="movie" maxCount="1" deletionRule="Nullify" destinationEntity="MovieClass"/>
+        <relationship name="watchList" maxCount="1" deletionRule="Nullify" destinationEntity="WatchList" inverseName="movieReviews" inverseEntity="WatchList"/>
     </entity>
     <entity name="WatchList" representedClassName="WatchList" syncable="YES" codeGenerationType="class">
+        <attribute name="hasReviews" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="movies" toMany="YES" deletionRule="Nullify" destinationEntity="MovieClass" inverseName="watchList" inverseEntity="MovieClass"/>
+        <relationship name="movieReviews" toMany="YES" deletionRule="Nullify" destinationEntity="MovieReview" inverseName="watchList" inverseEntity="MovieReview"/>
     </entity>
     <elements>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
-        <element name="MovieClass" positionX="-63" positionY="-9" width="128" height="164"/>
-        <element name="WatchList" positionX="-54" positionY="45" width="128" height="74"/>
+        <element name="MovieClass" positionX="-63" positionY="-9" width="128" height="149"/>
+        <element name="WatchList" positionX="-54" positionY="45" width="128" height="89"/>
+        <element name="MovieReview" positionX="-45" positionY="72" width="128" height="89"/>
     </elements>
 </model>

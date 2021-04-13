@@ -39,7 +39,7 @@ struct ContentView: View {
                 watchList.id = UUID()
                 
                 watchList.name = "Watch List"
-                watchList.movies = []
+                watchList.movieReviews = []
                 
                 do {
                     try viewContext.save()
@@ -52,7 +52,7 @@ struct ContentView: View {
                 watchList.id = UUID()
                 
                 watchList.name = "Watched List"
-                watchList.movies = []
+                watchList.movieReviews = []
                 
                 do {
                     try viewContext.save()

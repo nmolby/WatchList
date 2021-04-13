@@ -25,8 +25,8 @@ struct WatchListView: View {
     
     func getWatchList() {
         content = []
-        for pieceOfContent in watchList.movies! {
-            content.append(pieceOfContent as! ContentType)
+        for pieceOfContent in watchList.movieReviews! {
+            content.append((pieceOfContent as! MovieReview).movie as! ContentType)
         }
     }
 }
