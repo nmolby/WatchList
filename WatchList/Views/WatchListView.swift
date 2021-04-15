@@ -15,18 +15,19 @@ struct WatchListView: View {
     
     var body: some View {
         VStack {
-            ContentListView(results: $content)
+            List {
+                ForEach(watchList.movieReviews!.allObjects as! [MovieReview]) { movieReview in
+                    NavigationLink(destination:
+                                    MovieDetailView(movie: movieReview.movie!)) {
+                        ContentListViewItem(result: movieReview.movie!)
+                    }
+                    if(watchList.hasReviews) {
+                        StarRatingView(rating: .constant(Int(movieReview.rating)), clickable: false, maximumRating: 5)
+                        Text(movieReview.comment ?? "")
+                    }
+                }
+            }
         }
-        .navigationBarTitle("Movies", displayMode: .inline)
-        .onAppear() {
-            getWatchList()
-        }
-    }
-    
-    func getWatchList() {
-        content = []
-        for pieceOfContent in watchList.movieReviews! {
-            content.append((pieceOfContent as! MovieReview).movie as! ContentType)
-        }
+
     }
 }

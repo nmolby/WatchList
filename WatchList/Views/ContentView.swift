@@ -39,6 +39,7 @@ struct ContentView: View {
                 watchList.id = UUID()
                 
                 watchList.name = "Watch List"
+                watchList.hasReviews = false
                 watchList.movieReviews = []
                 
                 do {
@@ -50,7 +51,6 @@ struct ContentView: View {
             if (watchLists.count == 1) {
                 let watchList = WatchList(context: viewContext)
                 watchList.id = UUID()
-                
                 watchList.name = "Watched List"
                 watchList.movieReviews = []
                 

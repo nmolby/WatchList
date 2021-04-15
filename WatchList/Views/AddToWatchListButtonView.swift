@@ -11,6 +11,7 @@ struct AddToWatchListButtonView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @State internal var comments: String = ""
+    @State internal var rating: Int = 0
     @ObservedObject internal var watchList: WatchList
     @State internal var addingMovie = false
     internal var movieToAdd: MovieClass
@@ -28,8 +29,11 @@ struct AddToWatchListButtonView: View {
                     }
                 } else if !addingMovie {
                     Button("Add Movie") {
-                        addingMovie = true
-                        addToWatchList(watchList: watchList)
+                        if watchList.hasReviews {
+                            addingMovie = true
+                        } else {
+                            addToWatchList(watchList: watchList)
+                        }
                     }
                 }
             }
@@ -38,6 +42,10 @@ struct AddToWatchListButtonView: View {
         Group {
             if(watchList.hasReviews && addingMovie) {
                 TextField("Comments", text: $comments)
+                StarRatingView(rating: $rating, clickable: true, maximumRating: 5)
+                Button("Add Movie") {
+                    addToWatchList(watchList: watchList)
+                }
             }
         }
 
@@ -45,11 +53,12 @@ struct AddToWatchListButtonView: View {
     
     func addToWatchList(watchList: WatchList) {
         let movieReview = MovieReview(context: viewContext)
-        movieReview.comment = ""
-        movieReview.rating = 10
+        movieReview.comment = comments
+        movieReview.rating = Int16(rating)
         movieReview.movie = movieToAdd
         movieReview.watchList = watchList
         watchList.addToMovieReviews(movieReview)
+        addingMovie = false
         do {
             try viewContext.save()
         } catch {

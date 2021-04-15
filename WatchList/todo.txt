@@ -3,7 +3,6 @@ Watch List Desired Features:
 TODO:
 
 B:
-    - includes what rating you give a movie, comments about movie
 - Other lists?
 
 A (choose any):
@@ -14,6 +13,7 @@ A (choose any):
 
 DONE:
 
+- includes what rating you give a movie, comments about movie
 - Detail view of movie / tv show with list of actors
 - Movie / tv show search and add to a list
 - Detail view of actor

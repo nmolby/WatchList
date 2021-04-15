@@ -12,11 +12,12 @@
         <attribute name="posterPath" optional="YES" attributeType="String"/>
         <attribute name="voteAverage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="voteCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="movieReviews" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MovieReview" inverseName="movie" inverseEntity="MovieReview"/>
     </entity>
     <entity name="MovieReview" representedClassName="MovieReview" syncable="YES" codeGenerationType="class">
         <attribute name="comment" optional="YES" attributeType="String"/>
         <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="movie" maxCount="1" deletionRule="Nullify" destinationEntity="MovieClass"/>
+        <relationship name="movie" maxCount="1" deletionRule="Nullify" destinationEntity="MovieClass" inverseName="movieReviews" inverseEntity="MovieClass"/>
         <relationship name="watchList" maxCount="1" deletionRule="Nullify" destinationEntity="WatchList" inverseName="movieReviews" inverseEntity="WatchList"/>
     </entity>
     <entity name="WatchList" representedClassName="WatchList" syncable="YES" codeGenerationType="class">
@@ -27,8 +28,8 @@
     </entity>
     <elements>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
-        <element name="MovieClass" positionX="-63" positionY="-9" width="128" height="149"/>
-        <element name="WatchList" positionX="-54" positionY="45" width="128" height="89"/>
+        <element name="MovieClass" positionX="-63" positionY="-9" width="128" height="164"/>
         <element name="MovieReview" positionX="-45" positionY="72" width="128" height="89"/>
+        <element name="WatchList" positionX="-54" positionY="45" width="128" height="89"/>
     </elements>
 </model>

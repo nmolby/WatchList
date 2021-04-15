@@ -38,7 +38,6 @@ struct ContentListView: View {
                     }
                 }
             }
-            
         }
     }
 }
