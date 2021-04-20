@@ -28,6 +28,11 @@ struct WatchListView: View {
                 }
             }
         }
+        .onAppear() {
+            let prevWatchList = watchList
+            watchList = WatchList()
+            watchList = prevWatchList
+        }
 
     }
 }

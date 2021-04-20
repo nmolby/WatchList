@@ -28,12 +28,12 @@ struct ContentView: View {
         TabView {
             SearchView()
                 .tabItem { Image(systemName: "magnifyingglass") }
+                .tag("Search View")
             WatchListsView(watchListToShow: $watchListToShow)
                 .tabItem { Image(systemName: "archivebox") }
-        
-
-            
-        }.onAppear() {
+                .tag("Watchlist View")
+        }
+        .onAppear() {
             if (watchLists.count == 0) {
                 let watchList = WatchList(context: viewContext)
                 watchList.id = UUID()

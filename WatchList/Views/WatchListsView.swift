@@ -58,11 +58,9 @@ struct WatchListsView: View {
                 }
             )
             .navigationBarTitle("Watch Lists", displayMode: .inline)
-
         }
-
         .popover(isPresented: $addingWatchList) {
-            AddWatchListView(watchLists: watchLists)
+            AddWatchListView()
         }
 
 
