@@ -21,6 +21,7 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \WatchList.name, ascending: true)],
         animation: .default)
     private var watchLists: FetchedResults<WatchList>
+    
     @State private var watchListToShow: WatchList = WatchList()
 
     
@@ -34,6 +35,13 @@ struct ContentView: View {
                 .tag("Watchlist View")
         }
         .onAppear() {
+            onAppear()
+        }
+    }
+    
+    func onAppear() {
+        if !UserDefaults.standard.bool(forKey: "didLaunchBefore") {
+            UserDefaults.standard.set(true, forKey: "didLaunchBefore")
             if (watchLists.count == 0) {
                 let watchList = WatchList(context: viewContext)
                 watchList.id = UUID()
@@ -66,8 +74,12 @@ struct ContentView: View {
                     watchListToShow = watchList
                 }
             }
-            
         }
+        else {
+            watchListToShow = watchLists[0]
+        }
+        print(watchLists.count)
+        
     }
 }
 

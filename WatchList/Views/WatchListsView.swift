@@ -14,6 +14,9 @@ struct WatchListsView: View {
         animation: .default)
     private var watchLists: FetchedResults<WatchList>
     
+    @Environment(\.managedObjectContext) private var viewContext
+
+    
     @State private var addingWatchList = false
     @Binding internal var watchListToShow: WatchList
 
@@ -53,16 +56,34 @@ struct WatchListsView: View {
                 Spacer()
             }
             .navigationBarItems(
+                leading: Button(action: deleteWatchList) {
+                    Image(systemName: "minus")
+                        .foregroundColor(watchLists.count <= 1 ? .gray : .red)
+                }.disabled(watchLists.count <= 1) ,
                 trailing: Button(action: {addingWatchList = true}) {
                     Image(systemName: "plus")
                 }
             )
-            .navigationBarTitle("Watch Lists", displayMode: .inline)
+            .navigationBarTitle(watchListToShow.name ?? "", displayMode: .inline)
         }
         .popover(isPresented: $addingWatchList) {
             AddWatchListView()
         }
-
-
+    }
+    
+    func deleteWatchList() {
+        viewContext.delete(watchListToShow)
+        for watchList in watchLists {
+            if (watchList as WatchList) != watchListToShow {
+                watchListToShow = (watchList as WatchList)
+                break
+            }
+        }
+        
+        do {
+            try viewContext.save()
+        } catch {
+            print("save failed, error \(error)")
+        }
     }
 }
