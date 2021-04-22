@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Actor" representedClassName="Actor" syncable="YES" codeGenerationType="class">
+        <attribute name="biography" optional="YES" attributeType="String"/>
+        <attribute name="birthday" optional="YES" attributeType="String"/>
+        <attribute name="department" optional="YES" attributeType="String"/>
+        <attribute name="gender" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="homepage" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="placeOfBirth" optional="YES" attributeType="String"/>
+        <attribute name="profilePath" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
@@ -31,5 +42,6 @@
         <element name="MovieClass" positionX="-63" positionY="-9" width="128" height="164"/>
         <element name="MovieReview" positionX="-45" positionY="72" width="128" height="89"/>
         <element name="WatchList" positionX="-54" positionY="45" width="128" height="89"/>
+        <element name="Actor" positionX="-45" positionY="72" width="128" height="164"/>
     </elements>
 </model>

@@ -26,9 +26,6 @@ struct AddToWatchListView: View {
 
         .listStyle(GroupedListStyle())
         .navigationBarTitle("Watch Lists", displayMode: .large)
-        
-
-
     }
     
 }

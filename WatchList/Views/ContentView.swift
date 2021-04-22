@@ -31,8 +31,11 @@ struct ContentView: View {
                 .tabItem { Image(systemName: "magnifyingglass") }
                 .tag("Search View")
             WatchListsView(watchListToShow: $watchListToShow)
-                .tabItem { Image(systemName: "archivebox") }
+                .tabItem { Image(systemName: "rectangle.stack") }
                 .tag("Watchlist View")
+            FavoriteActorsListView()
+                .tabItem { Image(systemName: "person.crop.circle")}
+                .tag("Favorite Actor View")
         }
         .onAppear() {
             onAppear()
