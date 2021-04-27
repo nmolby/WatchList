@@ -9,8 +9,8 @@ import Foundation
 import CoreData
 
 extension Actor {
-    static func createFromPerson(person: Person, context: NSManagedObjectContext) -> Actor {
-        let actor = Actor(context: context)
+    static func createFromPerson(person: Person) -> Actor {
+        let actor = Actor()
         actor.biography = person.biography
         actor.birthday = person.birthday
         actor.department = person.knownForDepartment

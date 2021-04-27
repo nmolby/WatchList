@@ -1,35 +1,27 @@
 //
-//  ActorListItemView.swift
+//  ActorVListItemView.swift
 //  WatchList
 //
-//  Created by Nathan Molby on 3/25/21.
+//  Created by Nathan Molby on 4/22/21.
 //
 
-import Foundation
 import SwiftUI
-import Combine
-import CoreData
-
 
 struct ActorListItemView: View {
-    internal let actor: Cast
-    @Environment(\.managedObjectContext) private var viewContext
-    
+    internal let actor: Actor
+
     var body: some View {
-        VStack {
+        HStack {
             if let profilePath = actor.profilePath {
                 AsyncImage(
-                    url: URL(string: "https://image.tmdb.org/t/p/w185" + profilePath)!,
+                    url: URL(string: "https://image.tmdb.org/t/p/w92" + profilePath)!,
                     placeholder: {Text("") },
                     image: { Image(uiImage: $0)}
                 )
             }
-            Text(actor.name)
+            Spacer()
+            Text(actor.name ?? "")
                 .font(.title2)
-            if let character = actor.character {
-                Text(character).font(.title3)
-            }
         }
-
     }
 }

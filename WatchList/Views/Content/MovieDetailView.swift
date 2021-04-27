@@ -71,8 +71,8 @@ struct MovieDetailView: View {
                 HStack {
                     ForEach(cast) { actor in
                         NavigationLink(destination:
-                                        ActorDetailView(actor: actor)) {
-                            ActorListItemView(actor: actor)
+                                        PersonDetailView(actor: actor)) {
+                            CastListItemView(cast: actor)
                         }
                     }
                 }

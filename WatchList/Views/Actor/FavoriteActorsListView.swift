@@ -14,11 +14,17 @@ struct FavoriteActorsListView: View {
     private var actors: FetchedResults<Actor>
     
     var body: some View {
-        VStack {
-            ForEach(actors) { actor in
-                Text((actor as Actor).name ?? "no name")
+        NavigationView {
+            List {
+                ForEach(actors) { actor in
+                    NavigationLink(destination: ActorDetailView(actor: ActorClass(actor: actor))) {
+                        ActorListItemView(actor: actor)
+                    }
+                }
             }
+            .navigationBarTitle("Favorite Actors", displayMode: .inline)
         }
+
 
     }
 }
